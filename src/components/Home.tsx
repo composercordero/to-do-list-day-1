@@ -27,7 +27,7 @@ function Home() {
     return (
     <>
       <Form handleInputChange = {handleInputChange} handleFormSubmit={handleFormSubmit} newTask={newTask}/>
-      <TaskGrid />
+      <TaskGrid tasks={tasks}/>
       {/* {tasks.map( t=> <TaskGrid task={t} key={t.id}/> )} */}
     </>
   )
