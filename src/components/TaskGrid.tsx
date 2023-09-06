@@ -1,13 +1,25 @@
-import * as React from 'react';
+// import spacing from '@mui/system/spacing';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import Container from '@mui/material/Container';
+
+type Task = {
+    id: number, 
+    col1:string, 
+    col2:string, 
+    col3: string,
+    }
+
+type TaskProps = {
+    task: Task
+}
+
 
 const TaskGrid = () => {
     
     const rows: GridRowsProp = [
-        { id: 1, col1: 'Hello', col2: 'World' },
-        { id: 2, col1: 'DataGridPro', col2: 'is Awesomeis Awesomeis Awesomeis Awesomeis Awesomeis Awesomeis Awesome' },
-        { id: 3, col1: 'MUI', col2: 'is Amazing' },
+        { id: 1, col1: 'Carlos Cordero', col2: 'Create React To Do List', col3:'High' },
+        { id: 2, col1: 'Carlos Cordero', col2: 'Create Capstone Project', col3:'High' },
+        { id: 3, col1: 'Carlos Cordero', col2: 'Create React To Do List', col3:'High' },
     ];
 
     const columns: GridColDef[] = [
@@ -17,8 +29,8 @@ const TaskGrid = () => {
     ];
 
     return (<>
-    <Container maxWidth="xl" >
-    <div style={{ height: 300, width: '100%' }}>
+    <Container maxWidth="lg" sx={{my:4}}>
+    <div style={{ height: 300, width: '100%'}}>
       <DataGrid rows={rows} columns={columns} />
     </div>
     </Container>

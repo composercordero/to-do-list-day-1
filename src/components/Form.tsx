@@ -1,10 +1,24 @@
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import {TextField} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 
-const Form = () => {
+type Task = {
+  id: number, 
+  name:string, 
+  task:string, 
+  priority: string,
+}
+
+type TaskProps = {
+  handleInputChange: (e:React.ChangeEvent<HTMLInputElement>) => void
+  handleFormSubmit: (e:React.FormEvent) => void
+  newTask: Task
+}
+
+
+const Form = ({handleInputChange, handleFormSubmit, newTask}: TaskProps) => {
   const levels = [
     {value: 'Low'},
     {value: 'Medium'},
@@ -13,11 +27,12 @@ const Form = () => {
   
   return (
     <>
-    <Container maxWidth="xl" >
+    <Container maxWidth="lg" >
     <Box
-      component="form"
+      component="form" 
+      onSubmit={handleFormSubmit}
       sx={{
-        '& .MuiTextField-root': { mt: 5, mr: 5, width: '50ch' },
+        '& .MuiTextField-root': { mt: 5, mr: 5, width:'100%', display: 'flex', justifyContent: 'space-between', },
       }}
       autoComplete="off"
     >
@@ -25,21 +40,26 @@ const Form = () => {
       margin="normal"
       fullWidth
       required
-      name="Name"
+      name="name"
       label="Name"
-      type="text"
       id="name"
+      type='text'
       helperText="Who's performing this task?"
+      onChange={handleInputChange}
+      value={newTask.name}
     />
     <TextField
       margin="normal"
       fullWidth
       required
-      name="Task"
+      name="task"
       label="Task"
-      type="text"
       id="task"
+      type='text'
       helperText="What's the task?"
+      sx={{ flexGrow: 1 }}
+      onChange={handleInputChange}
+      value={newTask.task}
     />
 
     <TextField
@@ -47,13 +67,17 @@ const Form = () => {
       select
       label="Select"
       defaultValue="Low"
+      name="priority"
       helperText="Please select level of priority"
+      onChange={handleInputChange}
+      value={newTask.priority}
     >
     {levels.map((option) => (
       <MenuItem key={option.value} value={option.value}>
         {option.value}
       </MenuItem>
-    ))}</TextField>
+    ))
+    }</TextField>
     
     <Button 
       type="submit"
