@@ -24,12 +24,11 @@ function Header() {
     // RETURN
 
   return (
-    <AppBar sx={{              
+    <AppBar position='relative' sx={{              
         boxShadow: 0,
         backgroundColor: '#581845',
         }}>
-      <Container maxWidth="xl"  
-      >
+      <Container maxWidth="xl" >
         <Toolbar disableGutters >
           <Typography
             variant="h6"
