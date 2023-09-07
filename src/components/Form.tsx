@@ -3,20 +3,7 @@ import Button from '@mui/material/Button';
 import {TextField} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
-
-type Task = {
-  id: number, 
-  name:string, 
-  task:string, 
-  priority: string,
-}
-
-type TaskProps = {
-  handleInputChange: (e:React.ChangeEvent<HTMLInputElement>) => void
-  handleFormSubmit: (e:React.FormEvent) => void
-  newTask: Task
-}
-
+import TaskProps from './components/global/types'
 
 const Form = ({handleInputChange, handleFormSubmit, newTask}: TaskProps) => {
   const levels = [
