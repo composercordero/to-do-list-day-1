@@ -13,10 +13,9 @@ function Home({flashMessage}:HomeProps) {
     
     const [tasks, setTasks] = useState<TaskType[]>([])
     const [newTask, setNewTask] = useState({ id: 1, name: '', task: '', priority:'', delete:'' })
-    const [edit, setEdit] = useState(false);
+
 
     // const navigate = useNavigate();
-
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask({...newTask, [event.target.name]: event.target.value})
@@ -30,22 +29,21 @@ function Home({flashMessage}:HomeProps) {
     flashMessage('success', 'Success!', `${newTask.task} has been created!`)
     }
 
-    const editTask = (e) => {
-      let id = e.target.parentNode.parentNode.getAttribute('data-id');
-      setEdit(true)
-      flashMessage('success', 'Edited', `${newTask.task} has been edited!`)
+    const setEditTask = (e) => {
+      return e.target.parentNode.parentNode.getAttribute('data-id');
+      // flashMessage('success', 'Edited', `${newTask.task} has been edited!`)
     }
 
     const deleteTasks = (e) => {
       let id = e.target.parentNode.parentNode.getAttribute('data-id');
       setTasks(tasks => tasks.filter(item => item.id != id))
-      flashMessage('error', 'You got it', `${newTask.task} has been deleted!`)
+      flashMessage('error', 'You got it', 'Your task has been deleted!')
     }
 
     return (
     <>
       <Form handleInputChange = {handleInputChange} handleFormSubmit={handleFormSubmit} newTask={newTask} />
-      <TaskGrid tasks={tasks} deleteTasks={deleteTasks} editTask={editTask}/>
+      <TaskGrid tasks={tasks} deleteTasks={deleteTasks} setEditTask={setEditTask}/>
     </>
   )
 }

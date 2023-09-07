@@ -1,11 +1,11 @@
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-// import { setState } from 'react';
+import { useState } from 'react';
 import Container from '@mui/material/Container';
 import TaskProps from './components/global/types'
 import Button from '@mui/material/Button';
 
-const TaskGrid = ({tasks, deleteTasks, editTask}:TaskProps) => {
-
+const TaskGrid = ({tasks, deleteTasks, setEditTask}:TaskProps) => {
+    const [edit, setEdit] = useState('');
     const rows: GridRowsProp = tasks
 
     const columns: GridColDef[] = [
@@ -14,11 +14,25 @@ const TaskGrid = ({tasks, deleteTasks, editTask}:TaskProps) => {
         { field: 'priority', headerName: 'Priority', width: 150 },
         { field: 'edit', headerName: 'Edit', width: 80, 
         renderCell: () => {
-        return (<Button type="submit" id='edit' variant="contained" color="success" onClick={editTask}>Edit</Button>);
+        return (<Button 
+          type="submit" 
+          id='edit' 
+          variant="contained" 
+          color="success" 
+          onClick={() => setEdit(`${setEditTask}`)}>
+          Edit
+          </Button>);
       },},
         { field: 'delete', headerName: 'Delete', width: 80, 
           renderCell: () => {
-          return (<Button type="submit" id='delete' variant="contained" color="error" onClick={deleteTasks}>X</Button>);
+          return (<Button 
+            type="submit" 
+            id='delete' 
+            variant="contained" 
+            color="error" 
+            onClick={deleteTasks}>
+            X
+            </Button>);
         },},
     ];    
 
