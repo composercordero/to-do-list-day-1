@@ -4,6 +4,7 @@ type TaskType = {
     task:string, 
     priority: string,
     delete:string,
+    edit:boolean
     }
 
  type TaskProps = {

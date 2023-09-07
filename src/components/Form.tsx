@@ -17,7 +17,7 @@ const Form = ({handleInputChange, handleFormSubmit, newTask}: TaskProps) => {
     <Container maxWidth="lg" >
     <Box
       component="form" 
-      onSubmit={handleFormSubmit}
+        onSubmit={handleFormSubmit}
       sx={{
         '& .MuiTextField-root': { mt: 5, mr: 5, width:'100%', display: 'flex', justifyContent: 'space-between', },
       }}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+// import { useNavigate } from 'react-router-dom';
 import Form from './Form'
 import TaskGrid from './TaskGrid'
 import { Task } from '@mui/icons-material'
@@ -12,6 +13,10 @@ function Home({flashMessage}:HomeProps) {
     
     const [tasks, setTasks] = useState<TaskType[]>([])
     const [newTask, setNewTask] = useState({ id: 1, name: '', task: '', priority:'', delete:'' })
+    const [edit, setEdit] = useState(false);
+
+    // const navigate = useNavigate();
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask({...newTask, [event.target.name]: event.target.value})
@@ -25,6 +30,12 @@ function Home({flashMessage}:HomeProps) {
     flashMessage('success', 'Success!', `${newTask.task} has been created!`)
     }
 
+    const editTask = (e) => {
+      let id = e.target.parentNode.parentNode.getAttribute('data-id');
+      setEdit(true)
+      flashMessage('success', 'Edited', `${newTask.task} has been edited!`)
+    }
+
     const deleteTasks = (e) => {
       let id = e.target.parentNode.parentNode.getAttribute('data-id');
       setTasks(tasks => tasks.filter(item => item.id != id))
@@ -34,7 +45,7 @@ function Home({flashMessage}:HomeProps) {
     return (
     <>
       <Form handleInputChange = {handleInputChange} handleFormSubmit={handleFormSubmit} newTask={newTask} />
-      <TaskGrid tasks={tasks} deleteTasks={deleteTasks}/>
+      <TaskGrid tasks={tasks} deleteTasks={deleteTasks} editTask={editTask}/>
     </>
   )
 }
