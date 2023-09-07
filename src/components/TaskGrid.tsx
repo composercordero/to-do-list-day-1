@@ -19,7 +19,7 @@ const TaskGrid = ({tasks, deleteTasks, setEditTask}:TaskProps) => {
           id='edit' 
           variant="contained" 
           color="success" 
-          onClick={() => setEdit(`${setEditTask}`)}>
+          onClick={setEditTaskfunc}>
           Edit
           </Button>);
       },},
@@ -35,6 +35,10 @@ const TaskGrid = ({tasks, deleteTasks, setEditTask}:TaskProps) => {
             </Button>);
         },},
     ];    
+
+    const setEditTaskfunc = (e) => {
+      setEdit(e.target.parentNode.parentNode.getAttribute('data-id'))
+    }
 
     return (<>
     <Container maxWidth="lg" sx={{my:4}}>
